@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+        <div class="auth">
+            <div class="card">
+                <div class="auth__header text-center">
+                        <a href="{% url 'users' %}">IT<i class="fa fa-search"></i>Recruter</a>
+                    <h3>Вход в аккаунт</h3>
+                    <p>Добро пожаловать на ITRecruter</p>
+                </div>
+
+                <form action="" method="POST" class="form auth__form">
+                    {% csrf_token %}
+
+                    <div class="form__field">
+                        <label for="formInput#text">Логин: </label>
+                        <input class="input input--text" id="formInput#text" type="text" name="username"
+                            placeholder="Введите имя пользователя" />
+                    </div>
+
+                    <!-- Input:Password -->
+                    <div class="form__field">
+                        <label for="formInput#password">Пароль: </label>
+                        <input class="input input--password" id="formInput#passowrd" type="password" name="password"
+                            placeholder="••••••••" />
+                    </div>
+
+                    <div class="auth__actions">
+                        <input class="btn btn--sub btn--lg" type="submit" value="Войти" />
+                    </div>
+                </form>
+
+                <div class="auth__alternative">
+                    <p>Нет аккаунта?</p>
+                    <a href="{% url 'signupuser' %}">Зарегистрироваться</a>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% load static %}
+<header class="header">
+    <div class="container container--narrow">
+        <a href="{% url 'projects' %}"><span class="header__logo">IT<i class="fa fa-search"></i>Recruter</span></a>
+        <nav class="header__nav">
+            <input type="checkbox" id="responsive-menu" />
+            <label for="responsive-menu" class="toggle-menu">
+                <span>Меню</span>
+                <div class="toggle-menu__lines"></div>
+            </label>
+            <ul class="header__menu">
+                <li class="header__menuItem"><a href="{% url 'users' %}">Разработчики</a></li>
+                <li class="header__menuItem"><a href="{% url 'projects' %}">Проекты</a></li>
+                {% if request.user.is_authenticated %}
+                <li class="header__menuItem"><a href="{% url 'inbox' %}">Сообщения</a></li>
+                <li class="header__menuItem"><a href="{% url 'account' %}">Мой аккаунт</a></li>
+                <li class="header__menuItem"><a href="{% url 'create-project' %}">Создать проект</a></li>
+                <li class="header__menuItem">
+                    <form method="post" action="{% url 'logoutuser' %}">
+                        {% csrf_token %}
+                    <button type="submit" class="btn btn--sub">Выйти</button>
+                    </form>
+                </li>
+                {% else %}
+                <li class="header__menuItem"><a href="{% url 'loginuser' %}" class="btn btn--sub">Вход / Регистрация</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</header>

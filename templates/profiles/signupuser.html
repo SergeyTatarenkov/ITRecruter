@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+        <div class="auth">
+    <div class="card">
+        <div class="auth__header text-center">
+            <a href="{% url 'users' %}">IT<i class="fa fa-search"></i>Recruter</a>
+            <h3>Зарегистрироваться</h3>
+            <p>Создать аккаунт разработчика</p>
+        </div>
+
+        <form method="POST" class="form auth__form" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in register_form %}
+            <div class="form__field">
+                <label for="formInput#text">{{ field.label }}</label>
+                {{ field }}
+
+                {% for error in field.errors %}
+                <p style="color: red;">{{ error }}</p>
+                {% endfor %}
+
+            </div>
+
+            {% endfor %}
+
+            {% for field in profile_form %}
+            <div class="form__field">
+                <label for="formInput#text">{{ field.label }}</label>
+                {{ field }}
+
+                {% for error in field.errors %}
+                <p style="color: red;">{{ error }}</p>
+                {% endfor %}
+
+            </div>
+
+            {% endfor %}
+
+
+            <div class="auth__actions">
+                <input class="btn btn--sub btn--lg" type="submit" value="Сохранить" />
+            </div>
+        </form>
+        <div class="auth__alternative">
+            <p>Уже есть аккаунт?</p>
+            <a href="{% url 'loginuser' %}">Войти</a>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

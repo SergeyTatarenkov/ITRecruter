@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="auth">
+    <div class="card">
+        <div class="auth__header text-center">
+            <a href="{% url 'users' %}">IT<i class="fa fa-search"></i>Recruter</a>
+            <h3>Редактирование персональных данных</h3>
+            {{ error }}
+        </div>
+        <form method="POST" class="form auth__form" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {% for field in profile_form %}
+            <div class="form__field">
+                <label for="formInput#text">{{ field.label }}</label>
+                    {{ field }}
+            </div>
+            {% endfor %}
+
+            <div class="auth__actions">
+                <input class="btn btn--sub btn--lg" type="submit" value="Сохранить" />
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

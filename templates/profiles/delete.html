@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="auth">
+        <div class="card" style="height: 58vh">
+            <div class="auth__header text-center">
+                <form action="" method="POST">
+                     {% csrf_token %}
+                     <p>Вы действительно хотите удалить "{{ deleted_object }}"?</p>
+                     <a class="btn btn-primary" href="{% url 'account' %}">Отмена</a>
+                     <button type="submit" class="btn btn-danger">Подтвердить удаленние</button>
+                </form>
+            </div>
+       </div>
+    </div>
+{% endblock %}
